@@ -1,4 +1,4 @@
-let books = [
+let bookDB = [
   {
     id: 1,
     title: "To Kill a Mockingbird",
@@ -41,4 +41,4 @@ let books = [
   }
 ];
 
-export {books}
+export {bookDB}

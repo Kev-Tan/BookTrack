@@ -3,19 +3,20 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import BookList from './components/BookList'
-import { books } from './assets/booksInfo'
+import { bookDB } from './assets/booksInfo'
+import Navbar from './components/Navbar'
 
 
 
 function App() {
+
+  let [books, setBooks] = useState(bookDB) 
   
 
   return (
     <>
-     <h1 className="text-3xl font-bold underline text-red-400 mb-5">
-      BookTrack
-    </h1>
-    <BookList books={books}/>
+    <Navbar />
+    <BookList books={books} setBooks={setBooks}/>
     </>
   )
 }
