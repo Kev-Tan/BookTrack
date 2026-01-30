@@ -4,4 +4,4 @@ Things to do 29 Jan 2026
 
 Things to do 30 Jan 2026
 1. Create a component for adding new books
-2. Figure out a way to add new books to a stack and make it persist
+2. Figure out a way to add new books to a stack and make it persist (localStorage)

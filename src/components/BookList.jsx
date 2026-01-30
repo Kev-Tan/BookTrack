@@ -1,26 +1,10 @@
 // Rafce for shortcut
 import { useState } from 'react'
 import React from 'react'
+import BookItem from './BookItem'
 
 
 
-function createBookItem(info){
-    return <div className='bg-white p-5 mb-5'>
-        <div className='flex justify-between'>
-            <div>
-            <p className='text-left font-bold text-xl'>{info.title}</p>
-            <p className="text-md text-left underline">{info.author}</p>
-            </div>
-            <p className='self-center'>❤</p>
-        </div>
-
-        <p className='text-left mt-3 mb-3'>{info.synopsis}</p>
-        <div>
-            <p className='text-left font-semibold'>{info.genre} <span className='text-emerald-400'>| </span>{info.country}</p>
-        </div>
-
-    </div>
-}
 
 
 const BookList = ({books, setBooks}) => {
@@ -48,7 +32,8 @@ const BookList = ({books, setBooks}) => {
             {/* {createBookItem(books[0])}
             {createBookItem(books[1])}
               */}
-            {books.map((book)=>createBookItem(book))}
+            {/* {books.map((book)=>BookItem(book))} */}
+            {books.map(book => <BookItem key={book.id} info={book}/>)}
         </div>
        
     </div>
