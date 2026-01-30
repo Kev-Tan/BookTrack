@@ -6,6 +6,7 @@ const BookForm = ({books, setBooks}) => {
   const [genre, setGenre] = useState("");
   const [country, setCountry] = useState("");
   const [synopsis, setSynopsis] = useState("");
+  // const [id, setID] = useState(books[books.length - 1].id + 1);
 
   const handleSubmit = (e) =>{
     e.preventDefault();
@@ -14,7 +15,7 @@ const BookForm = ({books, setBooks}) => {
     setBooks([...books, book])
     }
   
-// A thriller set in a submarine as they race to fix a combustion engine that will blow up in 2 hours
+// 
 
   return (
     <div className="flex justify-center">
@@ -56,6 +57,15 @@ const BookForm = ({books, setBooks}) => {
             onChange={(e) => setCountry(e.target.value)}
           />
         </div>
+            {/* <div className="flex items-center">
+          <label className="w-24 font-semibold">ID:</label>
+          <input
+            className="flex-1 border px-2 py-1"
+            type="text"
+            value={id}
+            onChange={(e) => setID(e.target.value)}
+          />
+        </div> */}
         <div className="flex items-start">
           <label className="w-24 font-semibold pt-1">Synopsis:</label>
           <textarea

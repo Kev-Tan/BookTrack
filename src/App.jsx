@@ -6,13 +6,25 @@ import BookList from './components/BookList'
 import { bookDB } from './assets/booksInfo'
 import Navbar from './components/Navbar'
 import booksData from './assets/booksInfo.json'
+import { useEffect } from 'react'
 
-
+const getInitialData = () =>{
+  const data = JSON.parse(localStorage.getItem('books'))
+  if(!data) return [];
+  else return data
+}
 
 function App() {
+  let [books, setBooks] = useState(getInitialData) 
 
+  useEffect(()=>{
+    localStorage.setItem(
+      'books',
+      // .stringify convert to string since the web needs it in the form of a string
+      JSON.stringify(books) 
+    )
+  }, [books])
 
-  let [books, setBooks] = useState(booksData) 
   return (
     <>
     <Navbar />

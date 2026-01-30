@@ -9,7 +9,6 @@ import BookForm from './BookForm'
 
 const BookList = ({books, setBooks}) => {
 
-
   return (
     <div className='p-8'>        
 
