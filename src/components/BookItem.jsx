@@ -7,7 +7,10 @@ const BookItem = ({info}) => {
             <p className='text-left font-bold text-xl'>{info.title}</p>
             <p className="text-md text-left underline">{info.author}</p>
             </div>
+            <div className="flex items-center gap-3">
+            <p>🗑️</p>
             <p className='self-center'>❤</p>
+            </div>
         </div>
 
         <p className='text-left mt-3 mb-3'>{info.synopsis}</p>

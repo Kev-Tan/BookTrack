@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 
+let id = 0
+
 const BookForm = ({books, setBooks}) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
   const [country, setCountry] = useState("");
   const [synopsis, setSynopsis] = useState("");
-  // const [id, setID] = useState(books[books.length - 1].id + 1);
+  const [id, setID] = useState(0);
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    const book = {title, author, genre, country, synopsis}
+    const book = {title, author, genre, country, synopsis, id}
+    setID(prevID => prevID + 1);
     console.log(book)
     setBooks([...books, book])
+    setTitle('')
+    setAuthor('')
+    setGenre('')
+    setCountry('')
+    setSynopsis('')
     }
   
 // 
@@ -27,6 +35,7 @@ const BookForm = ({books, setBooks}) => {
             className="flex-1 border px-2 py-1"
             type="text"
             value={title}
+            required
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
@@ -36,6 +45,7 @@ const BookForm = ({books, setBooks}) => {
             className="flex-1 border px-2 py-1"
             type="text"
             value={author}
+            required
             onChange={(e) => setAuthor(e.target.value)}
           />
         </div>
@@ -45,6 +55,7 @@ const BookForm = ({books, setBooks}) => {
             className="flex-1 border px-2 py-1"
             type="text"
             value={genre}
+            required
             onChange={(e) => setGenre(e.target.value)}
           />
         </div>
@@ -54,6 +65,7 @@ const BookForm = ({books, setBooks}) => {
             className="flex-1 border px-2 py-1"
             type="text"
             value={country}
+            required
             onChange={(e) => setCountry(e.target.value)}
           />
         </div>
@@ -72,6 +84,7 @@ const BookForm = ({books, setBooks}) => {
             className="flex-1 border px-2 py-1"
             rows="3"
             value={synopsis}
+            required
             onChange={(e) => setSynopsis(e.target.value)}
           />
         </div>

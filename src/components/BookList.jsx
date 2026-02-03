@@ -14,14 +14,14 @@ const BookList = ({books, setBooks}) => {
 
         <BookForm books={books} setBooks={setBooks}/>
 
-        <div className='min-w-md bg-slate-200 p-5'>
+        {books.length>0 && <div className='min-w-md bg-slate-200 p-5'>
             {/* {createBookItem(books[0])}
             {createBookItem(books[1])}
               */}
             {/* {books.map((book)=>BookItem(book))} */}
             {books.map(book => <BookItem key={book.id} info={book}/>)}
         </div>
-       
+      } 
     </div>
   )
 }
