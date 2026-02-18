@@ -3,9 +3,11 @@
 import { GoogleGenAI, Type} from '@google/genai';
 
 // Best practice: implicitly use GEMINI_API_KEY env variable
-const ai = new GoogleGenAI({});
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
 async function recommendBook(prompt){
+    try{
+        console.log("Run")
         const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview', 
         contents: `Based on the user's description, please recommend 3 books that matches the user's prompt most closely ${prompt}`,
@@ -43,11 +45,17 @@ async function recommendBook(prompt){
     
     })
     console.log(response.text); // output is often markdown
+    return response.text
+}
+catch(e){
+    console.log("ERROR: ", e)
+}
 }
 
 
 
 async function findSimilar(book){
+    try{
     const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview', 
         contents: `Recommend me 3 books similar to ${book}?`,
@@ -86,6 +94,11 @@ async function findSimilar(book){
     })
     console.log(response.text); // output is often markdown
 }
+catch(e){
+    console.log("ERROR: ", e)
+}
+}
+
 
   let book = {
     "id": 1,
@@ -98,5 +111,5 @@ async function findSimilar(book){
 
 //   console.log(book)
 // findSimilar(book)
-console.log("Find romance book")
-recommendBook("I want a romance book that contains a meet-cute in a highschool setting")
+
+export {recommendBook, findSimilar}

@@ -29,13 +29,15 @@ function App() {
   // }, [books])
 
   return (
-    <div className=''>
+    <div className="flex justify-center">
+      <div className='w-5xl'>
     <Navbar />
     <Routes>
-        <Route path="/Recommendation" element={<Recommendation />} />
-        <Route path="/BookForm" element={<BookForm />} />
+        <Route path="/Recommendation" element={<Recommendation books={books} setBooks={setBooks}/>} />
+        <Route path="/BookForm" element={<BookForm books={books} setBooks={setBooks}/>} />
         <Route path="/BookList" element={<BookList books={books} />} />
     </Routes>
+      </div>
     </div>
   )
 }
