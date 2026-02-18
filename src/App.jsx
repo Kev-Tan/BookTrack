@@ -7,6 +7,9 @@ import { bookDB } from './assets/booksInfo'
 import Navbar from './components/Navbar'
 import booksData from './assets/booksInfo.json'
 import { useEffect } from 'react'
+import Recommendation from './components/Recommendation'
+import { Routes, Route } from 'react-router-dom';
+import BookForm from './components/BookForm'
 
 const getInitialData = () =>{
   const data = JSON.parse(localStorage.getItem('books'))
@@ -17,19 +20,23 @@ const getInitialData = () =>{
 function App() {
   let [books, setBooks] = useState(getInitialData) 
 
-  useEffect(()=>{
-    localStorage.setItem(
-      'books',
-      // .stringify convert to string since the web needs it in the form of a string
-      JSON.stringify(books) 
-    )
-  }, [books])
+  // useEffect(()=>{
+  //   localStorage.setItem(
+  //     'books',
+  //      .stringify convert to string since the web needs it in the form of a string
+  //     JSON.stringify(books) 
+  //   )
+  // }, [books])
 
   return (
-    <>
+    <div className=''>
     <Navbar />
-    <BookList books={books} setBooks={setBooks}/>
-    </>
+    <Routes>
+        <Route path="/Recommendation" element={<Recommendation />} />
+        <Route path="/BookForm" element={<BookForm />} />
+        <Route path="/BookList" element={<BookList books={books} />} />
+    </Routes>
+    </div>
   )
 }
 

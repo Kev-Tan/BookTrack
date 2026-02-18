@@ -12,7 +12,7 @@ const BookList = ({books, setBooks}) => {
   return (
     <div className='p-8'>        
 
-        <BookForm books={books} setBooks={setBooks}/>
+        {/* <BookForm books={books} setBooks={setBooks}/> */}
 
         {books.length>0 && <div className='min-w-md bg-slate-200 p-5'>
             {/* {createBookItem(books[0])}

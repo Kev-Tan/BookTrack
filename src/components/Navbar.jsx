@@ -1,6 +1,8 @@
 import React from 'react'
 import { IconMenu2 } from '@tabler/icons-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom'
+
 
 const Navbar = () => {
 
@@ -21,8 +23,9 @@ const Navbar = () => {
         </div>
         {toggleNav &&
         <ul className='flex flex-col mt-10 gap-2'>
-            <li key="home" className='hover:text-emerald-400 font-semibold transition-all duration-100'>Home</li>
-            <li key="stack" className='hover:text-emerald-400 font-semibold transition-all duration-100'>Stack</li>
+            <li key="ai_recommendation" className='hover:text-emerald-400 font-semibold transition-all duration-100'><Link to="/Recommendation">AI Recommendation</Link></li>
+            <li key="manual_add" className='hover:text-emerald-400 font-semibold transition-all duration-100'><Link to="/BookForm">BookForm</Link></li>
+            <li key="stack" className='hover:text-emerald-400 font-semibold transition-all duration-100'><Link to="/BookList">BookList</Link></li>
         </ul>
         }
     </div>
