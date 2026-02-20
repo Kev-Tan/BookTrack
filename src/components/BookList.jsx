@@ -13,13 +13,13 @@ const BookList = ({books, setBooks}) => {
     <div className='p-8'>        
 
         {/* <BookForm books={books} setBooks={setBooks}/> */}
-        {
+        {/* {
           books.forEach((book) =>{
             console.log(book.id)
           })
-        }
-
-        {books.length>0 && <div className='min-w-md bg-slate-200 p-5'>
+        } */}
+        {console.log(books)}
+        {books.length>0 && <div className='min-w-xs bg-slate-200 p-5'>
             {/* {createBookItem(books[0])}
             {createBookItem(books[1])}
               */}
