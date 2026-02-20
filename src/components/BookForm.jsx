@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { supabase } from "./GetData";
 
-let id = 0
 
 const BookForm = ({books, setBooks}) => {
   const [title, setTitle] = useState("");
@@ -8,14 +8,22 @@ const BookForm = ({books, setBooks}) => {
   const [genre, setGenre] = useState("");
   const [country, setCountry] = useState("");
   const [synopsis, setSynopsis] = useState("");
-  const [id, setID] = useState(0);
+  // const [id, setID] = useState(0);
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = async(e) =>{
     e.preventDefault();
-    const book = {title, author, genre, country, synopsis, id}
-    setID(prevID => prevID + 1);
-    console.log(book)
-    setBooks([...books, book])
+    const book = {title, author, genre, country, synopsis}
+
+    const {data, error} = await supabase
+    .from("books")
+    .insert(book)
+    .select()
+
+    console.log(data)
+    console.log(data[0])
+
+    if(error) throw error
+    setBooks([...books, data[0]])
     setTitle('')
     setAuthor('')
     setGenre('')

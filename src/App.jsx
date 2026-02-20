@@ -7,29 +7,36 @@ import { bookDB } from './assets/booksInfo'
 import Navbar from './components/Navbar'
 import booksData from './assets/booksInfo.json'
 import { useEffect } from 'react'
+import Recommendation from './components/Recommendation'
+import { Routes, Route } from 'react-router-dom';
+import BookForm from './components/BookForm'
+import { fetchBooks } from './components/GetData'
 
-const getInitialData = () =>{
-  const data = JSON.parse(localStorage.getItem('books'))
-  if(!data) return [];
-  else return data
-}
+// const getInitialData = () =>{
+//   const data = JSON.parse(localStorage.getItem('books'))
+//   if(!data) return [];
+//   else return data
+// }
 
 function App() {
-  let [books, setBooks] = useState(getInitialData) 
+  let [books, setBooks] = useState([]) 
 
   useEffect(()=>{
-    localStorage.setItem(
-      'books',
-      // .stringify convert to string since the web needs it in the form of a string
-      JSON.stringify(books) 
-    )
-  }, [books])
+    fetchBooks(setBooks)
+  }, [])
+
 
   return (
-    <>
+    <div className="flex justify-center">
+      <div className='w-5xl'>
     <Navbar />
-    <BookList books={books} setBooks={setBooks}/>
-    </>
+    <Routes>
+        <Route path="/" element={<Recommendation books={books} setBooks={setBooks}/>} />
+        <Route path="/BookForm" element={<BookForm books={books} setBooks={setBooks}/>} />
+        <Route path="/BookList" element={<BookList books={books} setBooks={setBooks}/>} />
+    </Routes>
+      </div>
+    </div>
   )
 }
 
