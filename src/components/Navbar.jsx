@@ -23,7 +23,7 @@ const Navbar = () => {
         </div>
         {toggleNav &&
         <ul className='flex flex-col mt-10 gap-2'>
-            <li key="ai_recommendation" className='hover:text-emerald-400 font-semibold transition-all duration-100'><Link to="/Recommendation">AI Recommendation</Link></li>
+            <li key="ai_recommendation" className='hover:text-emerald-400 font-semibold transition-all duration-100'><Link to="/">AI Recommendation</Link></li>
             <li key="manual_add" className='hover:text-emerald-400 font-semibold transition-all duration-100'><Link to="/BookForm">BookForm</Link></li>
             <li key="stack" className='hover:text-emerald-400 font-semibold transition-all duration-100'><Link to="/BookList">BookList</Link></li>
         </ul>

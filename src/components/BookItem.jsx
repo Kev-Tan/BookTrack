@@ -1,6 +1,16 @@
 import React from 'react'
+import { supabase } from './GetData'
 
-const BookItem = ({info}) => {
+const deleteBook = async(id, books, setBooks) =>{
+    console.log(id)
+    const response = await supabase
+    .from('books')
+    .delete()
+    .eq('id', id)
+    setBooks(books.filter(book=>book.id !== id))
+}
+
+const BookItem = ({info, books, setBooks}) => {
     return <div className='bg-white p-5 mb-5'>
         <div className='flex justify-between'>
             <div>
@@ -8,8 +18,8 @@ const BookItem = ({info}) => {
             <p className="text-md text-left underline">{info.author}</p>
             </div>
             <div className="flex items-center gap-3">
-            <p>🗑️</p>
-            <p className='self-center'>❤</p>
+            <p onClick={()=>{deleteBook(info.id, books, setBooks)}}>🗑️</p>
+            {/* <p className='self-center'>❤</p> */}
             </div>
         </div>
 
