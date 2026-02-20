@@ -22,7 +22,7 @@ const submitPrompt = async(e, prompt) =>{
 
 
   return (
-    <div className='my-30 bg-blue-300 m-5'>
+    <div className='my-30 m-5'>
         
 
         <form className="flex flex-col items-center" onSubmit={(e)=>submitPrompt(e, prompt)}>
