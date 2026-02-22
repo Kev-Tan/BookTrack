@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { recommendBook, findSimilar } from './Model'
 import BookList from './BookList'
 import RecommendedBook from './RecommendedBook'
+import BookItem from './BookItem'
 
 
 
@@ -41,11 +42,11 @@ const submitPrompt = async(e, prompt) =>{
         }}>Test</button> */}
         <div>
         {recommendedBooks && 
-        <div className='min-w-xs bg-slate-200 p-5'>
+        <div className='min-w-xs bg-slate-200 p-5 mt-10'>
           {
         recommendedBooks.map((book)=>{
           // return <li key={book.title}>{book.title}</li>
-          return <RecommendedBook id={book.name} book={book} books={books} setBooks={setBooks}/>
+          return <BookItem id={book.name} info={book} books={books} setBooks={setBooks} recommend/>
         })
       }
         </div>

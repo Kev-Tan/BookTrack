@@ -10,7 +10,18 @@ const deleteBook = async(id, books, setBooks) =>{
     setBooks(books.filter(book=>book.id !== id))
 }
 
-const BookItem = ({info, books, setBooks}) => {
+const BookItem = ({info, books, setBooks, recommend}) => {
+
+    const addRecommendedBook = async () => {
+        const {data, error} = await supabase
+            .from("books")
+            .insert(info)
+            .select()
+
+            setBooks([...books, data[0]])
+            console.log("Book added!")
+    }
+
     return <div className='bg-white p-5 mb-5'>
         <div className='flex justify-between'>
             <div>
@@ -18,14 +29,19 @@ const BookItem = ({info, books, setBooks}) => {
             <p className="text-md text-left underline">{info.author}</p>
             </div>
             <div className="flex items-center gap-3">
-            <p onClick={()=>{deleteBook(info.id, books, setBooks)}}>🗑️</p>
+            {!recommend && <p onClick={()=>{deleteBook(info.id, books, setBooks)}}>🗑️</p>}
             {/* <p className='self-center'>❤</p> */}
             </div>
         </div>
 
         <p className='text-left mt-3 mb-3'>{info.synopsis}</p>
-        <div>
+        <div className='flex justify-between items-center'>
+            <div>
             <p className='text-left font-semibold'>{info.genre} <span className='text-emerald-400'>| </span>{info.country}</p>
+            </div>
+            <div>
+                {recommend &&  <p className="bg-white text-black hover:bg-emerald-400 hover:text-white border duration-100 ease-in transition-colors px-2 py-1 mt-5" onClick={()=>{addRecommendedBook()}}>Add Book</p>}
+            </div>
         </div>
 
     </div>
