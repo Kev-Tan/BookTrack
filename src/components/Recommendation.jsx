@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { recommendBook, findSimilar } from './Model'
 import BookList from './BookList'
-import RecommendedBook from './RecommendedBook'
+// import RecommendedBook from './RecommendedBook'
 import BookItem from './BookItem'
 
 
