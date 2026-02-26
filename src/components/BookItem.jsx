@@ -1,26 +1,11 @@
 import React from 'react'
 import { supabase } from './GetData'
+import { deleteSupabase } from '../utils/Utils'
+import { createSupabase } from '../utils/Utils'
 
-const deleteBook = async(id, books, setBooks) =>{
-    console.log(id)
-    const response = await supabase
-    .from('books')
-    .delete()
-    .eq('id', id)
-    setBooks(books.filter(book=>book.id !== id))
-}
 
 const BookItem = ({info, books, setBooks, recommend}) => {
-
-    const addRecommendedBook = async () => {
-        const {data, error} = await supabase
-            .from("books")
-            .insert(info)
-            .select()
-
-            setBooks([...books, data[0]])
-            console.log("Book added!")
-    }
+    
 
     return <div className='bg-white p-5 mb-5'>
         <div className='flex justify-between'>
@@ -29,7 +14,7 @@ const BookItem = ({info, books, setBooks, recommend}) => {
             <p className="text-md text-left underline">{info.author}</p>
             </div>
             <div className="flex items-center gap-3">
-            {!recommend && <p onClick={()=>{deleteBook(info.id, books, setBooks)}}>🗑️</p>}
+            {!recommend && <p onClick={()=>{deleteSupabase(info.id, books, setBooks)}}>🗑️</p>}
             {/* <p className='self-center'>❤</p> */}
             </div>
         </div>
@@ -40,7 +25,7 @@ const BookItem = ({info, books, setBooks, recommend}) => {
             <p className='text-left font-semibold'>{info.genre} <span className='text-emerald-400'>| </span>{info.country}</p>
             </div>
             <div>
-                {recommend &&  <p className="bg-white text-black hover:bg-emerald-400 hover:text-white border duration-100 ease-in transition-colors px-2 py-1 mt-5" onClick={()=>{addRecommendedBook()}}>Add Book</p>}
+                {recommend &&  <p className="bg-white text-black hover:bg-emerald-400 hover:text-white border duration-100 ease-in transition-colors px-2 py-1 mt-5" onClick={()=>{createSupabase(info, books, setBooks)}}>Add Book</p>}
             </div>
         </div>
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { supabase } from "./GetData";
+import { createSupabase } from "../utils/Utils";
 
 
 const BookForm = ({books, setBooks}) => {
@@ -14,10 +15,8 @@ const BookForm = ({books, setBooks}) => {
     e.preventDefault();
     const book = {title, author, genre, country, synopsis}
 
-    const {data, error} = await supabase
-    .from("books")
-    .insert(book)
-    .select()
+
+    createSupabase(book, books, setBooks)
 
     console.log(data)
     console.log(data[0])
