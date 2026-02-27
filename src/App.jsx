@@ -10,7 +10,7 @@ import { useEffect } from 'react'
 import Recommendation from './components/Recommendation'
 import { Routes, Route } from 'react-router-dom';
 import BookForm from './components/BookForm'
-import { fetchBooks } from './components/GetData'
+import { fetchBooks } from './utils/GetData'
 
 // const getInitialData = () =>{
 //   const data = JSON.parse(localStorage.getItem('books'))

@@ -1,4 +1,4 @@
-import { supabase } from '../components/GetData'
+import { supabase } from './GetData'
 
 export const createSupabase = async (book, books, setBooks) => {
     const {data, error} = await supabase

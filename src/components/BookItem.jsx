@@ -1,5 +1,5 @@
 import React from 'react'
-import { supabase } from './GetData'
+import { supabase } from '../utils/GetData'
 import { deleteSupabase } from '../utils/Utils'
 import { createSupabase } from '../utils/Utils'
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { supabase } from "./GetData";
+import { supabase } from "../utils/GetData";
 import { createSupabase } from "../utils/Utils";
 
 
@@ -34,7 +34,7 @@ const BookForm = ({books, setBooks}) => {
 
   return (
     <div className="flex justify-center">
-      <form className="border flex flex-col w-[400px] m-4 p-8 gap-3" onSubmit={handleSubmit}>
+      <form className="border flex flex-col m-4 p-8 gap-3" onSubmit={handleSubmit}>
         {/* Row */}
         <div className="flex items-center">
           <label className="w-24 font-semibold">Book:</label>
