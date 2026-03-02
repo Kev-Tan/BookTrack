@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import BookItem from './BookItem';
-import { Button } from '@mantine/core';
+import { Button } from "@/components/ui/button"
+import { CardImage } from './Card';
 
 
 const containerVariants = {
@@ -16,19 +17,30 @@ const containerVariants = {
 const BookList = ({ books, setBooks }) => {
   return (
     <div className='p-8'>
+   
       {books.length > 0 && (
         <motion.div 
-          className='min-w-xs bg-slate-200 p-5'
+          className='grid gap-2 xl:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1  '
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {books.map(book => (
+          {/* {books.map(book => (
             <BookItem 
               key={book.id} 
               info={book} 
               books={books} 
               setBooks={setBooks}
+            />
+          ))} */}
+
+          {books.map(book => (
+            <CardImage
+              key={book.id} 
+              info={book} 
+              books={books} 
+              setBooks={setBooks}
+              recommend = {false}
             />
           ))}
         </motion.div>

@@ -27,7 +27,7 @@ function App() {
 
 
   return (
-    <div className="flex justify-center">
+    <div className="">
       <div className='w-5xl'>
     <Navbar />
     <Routes>

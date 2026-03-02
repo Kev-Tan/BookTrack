@@ -2,9 +2,9 @@ import React from 'react'
 import { useState } from 'react'
 import { recommendBook, findSimilar } from './Model'
 import BookList from './BookList'
-
-// import RecommendedBook from './RecommendedBook'
 import BookItem from './BookItem'
+import { CardImage } from './Card'
+import { motion, AnimatePresence } from "framer-motion"
 
 
 
@@ -38,21 +38,34 @@ const submitPrompt = async(e, prompt) =>{
          
         </form>
 
-        {/* <button className="bg-blue-200 px-4 py-1" type="submit" onClick={()=>{
-          recommendBook("Give me a slow burn romance novel that takes place in Seoul")
-        }}>Test</button> */}
-        <div>
-        {recommendedBooks && 
-        <div className='min-w-xs bg-slate-200 p-5 mt-10'>
-          {
-        recommendedBooks.map((book)=>{
-          // return <li key={book.title}>{book.title}</li>
-          return <BookItem id={book.name} info={book} books={books} setBooks={setBooks} recommend/>
-        })
-      }
-        </div>
-        }
-        </div>
+        <AnimatePresence mode="wait">
+  {recommendedBooks && (
+    <motion.div
+      key="recs"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 12 }}
+      transition={{ duration: 0.3 }}
+      className="min-w-xs p-5 mt-10 grid gap-2 xl:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1"
+    >
+      {recommendedBooks.map((book, idx) => (
+        <motion.div
+          key={book.title ?? book.name ?? idx}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25, delay: idx * 0.06 }}
+        >
+          <CardImage
+            info={book}
+            books={books}
+            setBooks={setBooks}
+            recommend
+          />
+        </motion.div>
+      ))}
+    </motion.div>
+  )}
+</AnimatePresence>    
     </div>
   )
 }
