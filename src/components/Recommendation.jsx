@@ -4,7 +4,8 @@ import { recommendBook, findSimilar } from './Model'
 import BookList from './BookList'
 import { CardImage } from './CardImage'
 import { motion, AnimatePresence } from "framer-motion"
-import BasicForm from './RecommendationForm'
+import BasicForm from './BasicForm'
+import { Loader2 } from "lucide-react"
 
 
 

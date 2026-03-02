@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { supabase } from '../utils/GetData'
 import { deleteSupabase } from '../utils/Utils'
 import { createSupabase } from '../utils/Utils'
+import { toast } from "sonner"
 import {
   Card,
   CardDescription,
@@ -13,6 +14,7 @@ import {
 
 export function CardImage({info, books, setBooks, recommend}) {
   return (
+      
     <Card className="relative mx-auto w-full max-w-xs pt-0 flex flex-col min-h-[300px]">
       <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
 
@@ -31,7 +33,13 @@ export function CardImage({info, books, setBooks, recommend}) {
 
 <CardFooter className="flex gap-2 mt-auto">
     {recommend && (
-        <Button className="flex-1" variant="" onClick={() => createSupabase(info, books, setBooks)}>Add Book</Button>
+        <Button className="flex-1" variant="" onClick={ () => {
+          console.log("ADDING TO BOOK LIST")
+           createSupabase(info, books, setBooks)
+            toast("Book has been added", {
+      description: `You have added ${info.title} into your book list`,
+    })
+        }}>Add Book</Button>
     )}
 
     {!recommend && (

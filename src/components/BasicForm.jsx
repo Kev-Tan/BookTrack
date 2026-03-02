@@ -2,9 +2,10 @@
 
 import React from "react"
 import { useForm } from "react-hook-form"
-
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
+
 import {
   Form,
   FormControl,
@@ -25,8 +26,11 @@ import {
 // make sure these exist in your file or props/state:
 import { recommendBook } from "./Model" // adjust path
 // const [recommendedBooks, setRecommendedBooks] = useState(null)
+import { Loader2 } from "lucide-react"
 
 export default function BasicForm({ setRecommendedBooks }) {
+    const [loading, setLoading] = useState(false)
+
   const form = useForm({
     defaultValues: {
       recommendation: "",
@@ -35,13 +39,19 @@ export default function BasicForm({ setRecommendedBooks }) {
   })
 
   async function onSubmit(values) {
-    form.reset()
-    const prompt = values.recommendation
-    console.log("prompt:", prompt)
+    try{
+        setLoading(true)
+        const prompt = values.recommendation
+        console.log("prompt:", prompt)
 
-    const result = await recommendBook(prompt)
-    const parsedBooks = JSON.parse(result)
-    setRecommendedBooks(parsedBooks)
+        const result = await recommendBook(prompt)
+        const parsedBooks = JSON.parse(result)
+        setRecommendedBooks(parsedBooks)
+    }
+    finally{
+        form.reset()
+        setLoading(false)
+    }
   }
 
   return (
@@ -76,9 +86,12 @@ export default function BasicForm({ setRecommendedBooks }) {
               <Button  className="basis-1/3" type="button" variant="outline" onClick={() => form.reset()}>
                 Reset
               </Button>
-              <Button type="submit" className="basis-2/3">
-                Submit
-              </Button>
+              <Button type="submit" disabled={loading} className="basis-2/3">
+                {loading && (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                {loading ? "Generating..." : "Submit"}
+                </Button>
             </CardFooter>
           </form>
         </Form>

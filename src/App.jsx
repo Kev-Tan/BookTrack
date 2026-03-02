@@ -11,6 +11,7 @@ import Recommendation from './components/Recommendation'
 import { Routes, Route } from 'react-router-dom';
 import BookForm from './components/BookForm'
 import { fetchBooks } from './utils/GetData'
+import { Toaster } from "sonner"
 
 // const getInitialData = () =>{
 //   const data = JSON.parse(localStorage.getItem('books'))
@@ -35,6 +36,7 @@ function App() {
         <Route path="/BookForm" element={<BookForm books={books} setBooks={setBooks}/>} />
         <Route path="/BookList" element={<BookList books={books} setBooks={setBooks}/>} />
     </Routes>
+          <Toaster richColors />
       </div>
     </div>
   )
