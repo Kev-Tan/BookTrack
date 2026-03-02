@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
-import BookItem from './BookItem';
 import { Button } from "@/components/ui/button"
-import { CardImage } from './Card';
+import { CardImage } from './CardImage';
 
 
 const containerVariants = {
@@ -20,20 +19,12 @@ const BookList = ({ books, setBooks }) => {
    
       {books.length > 0 && (
         <motion.div 
-          className='grid gap-2 xl:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1  '
+          className='grid gap-6 xl:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1  '
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* {books.map(book => (
-            <BookItem 
-              key={book.id} 
-              info={book} 
-              books={books} 
-              setBooks={setBooks}
-            />
-          ))} */}
-
+  
           {books.map(book => (
             <CardImage
               key={book.id} 
