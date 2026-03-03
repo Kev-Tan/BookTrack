@@ -28,7 +28,7 @@ import { recommendBook } from "./Model" // adjust path
 // const [recommendedBooks, setRecommendedBooks] = useState(null)
 import { Loader2 } from "lucide-react"
 
-export default function BasicForm({ setRecommendedBooks }) {
+export default function RecommendationFormAI({ setRecommendedBooks }) {
     const [loading, setLoading] = useState(false)
 
   const form = useForm({

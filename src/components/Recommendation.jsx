@@ -4,7 +4,7 @@ import { recommendBook, findSimilar } from './Model'
 import BookList from './BookList'
 import { CardImage } from './CardImage'
 import { motion, AnimatePresence } from "framer-motion"
-import BasicForm from './BasicForm'
+import RecommendationFormAI from './RecommendationFormAi'
 import { Loader2 } from "lucide-react"
 
 
@@ -36,7 +36,7 @@ const formAnim = {
         animate="show"
         className="w-full flex justify-center"
       >
-      <BasicForm setRecommendedBooks={setRecommendedBooks} />
+      <RecommendationFormAI setRecommendedBooks={setRecommendedBooks} />
     </motion.div>
 
         <AnimatePresence mode="wait">
