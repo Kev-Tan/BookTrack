@@ -47,7 +47,7 @@ const formAnim = {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 12 }}
       transition={{ duration: 0.3 }}
-      className="min-w-xs p-5 mt-10 grid gap-2 xl:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1"
+      className="min-w-xs p-5 mt-10 grid gap-2 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1"
     >
       {recommendedBooks.map((book, idx) => (
         <motion.div

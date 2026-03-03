@@ -5,16 +5,16 @@ import axios from 'axios';
 import { data } from 'react-router-dom';
 
 
-const grabInfo = async(term) =>{
-  try{
-    const res = await axios.get(`http://127.0.0.1:8000/books/${term}`)
-    console.log("done!")
-    return res.data
-  }
-  catch(e){
-    console.log(e)
-  }
-}
+// const grabInfo = async(term) =>{
+//   try{
+//     const res = await axios.get(`http://127.0.0.1:8000/books/${term}`)
+//     console.log("done!")
+//     return res.data
+//   }
+//   catch(e){
+//     console.log(e)
+//   }
+// }
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,16 +28,7 @@ const containerVariants = {
 
 const BookList = ({ books, setBooks }) => {
   return (
-    <div className='p-8'>
-        {/* <button onClick={async()=>{
-          let data = await grabInfo("Harry Potter")
-          console.log(data.items)
-          books = data.items
-          books.forEach((book)=>{
-            console.log(book.volumeInfo.title)
-          })
-        }}>Make request to fastAPI</button> */}
-
+    <div className='p-8 mt-20'>
       {books.length==0 && (
         <>
       <h1 className="mt-40 scroll-m-20 text-center text-4xl font-semibold tracking-tight text-balance">
@@ -51,7 +42,7 @@ const BookList = ({ books, setBooks }) => {
 
       {books.length > 0 && (
         <motion.div 
-          className='grid gap-6 xl:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1  '
+          className='grid gap-6 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1  '
           variants={containerVariants}
           initial="hidden"
           animate="visible"

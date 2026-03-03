@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
+import axios from 'axios';
+
 
 import {
   Form,
@@ -44,9 +46,36 @@ export default function RecommendationFormAI({ setRecommendedBooks }) {
         const prompt = values.recommendation
         console.log("prompt:", prompt)
 
-        const result = await recommendBook(prompt)
-        const parsedBooks = JSON.parse(result)
-        setRecommendedBooks(parsedBooks)
+        // const result = await recommendBook(prompt)
+        // const parsedBooks = JSON.parse(result)
+        // setRecommendedBooks(parsedBooks)
+    const res = await axios.get("http://127.0.0.1:8000/recommend_books", {
+            params: { prompt },
+      });
+      console.log(res)
+      const recs = res.data.books;
+      const enriched = await Promise.all(
+  recs.map(async (book) => {
+
+    const gb = await axios.get(
+      `http://127.0.0.1:8000/books/${encodeURIComponent(book.title)}`
+    );
+
+    const first = gb.data.items[0];
+    const v = first.volumeInfo;
+
+    return {
+      ...book,
+      google_id: first.id,
+      image_link: v.imageLinks.thumbnail,
+      genre: "N/A",
+      // country: "N/A",
+    };
+  })
+);
+
+    console.log(enriched)
+    setRecommendedBooks(enriched)
     }
     finally{
         form.reset()
