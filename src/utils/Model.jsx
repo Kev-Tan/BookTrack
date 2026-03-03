@@ -9,8 +9,8 @@ async function recommendBook(prompt){
     try{
         console.log("Run")
         const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview', 
-        contents: `Based on the user's description, please recommend 3 books that matches the user's prompt most closely ${prompt}`,
+        model: 'gemini-1.5-flash-8b', 
+        contents: `Based on the user's description, please recommend 2 books that matches the user's prompt most closely ${prompt}`,
         config:{
             responseMimeType: 'application/json',
             responseSchema:{

@@ -5,12 +5,23 @@ import { Button } from "@/components/ui/button"
 import { Field } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import axios from 'axios';
+import { CardImage } from "./CardImage";
+import { motion } from 'framer-motion';
 
 
-
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15, // Delay between each item
+    },
+  },
+};
 
 const BookForm = ({books, setBooks}) => {
   const [value, setValue] = useState("")
+  const [results, setResults] = useState([])
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
@@ -34,24 +45,24 @@ const BookForm = ({books, setBooks}) => {
     }
   }
 
-  const handleSubmit = async(e) =>{
-    e.preventDefault();
-    const book = {title, author, genre, country, synopsis}
+  // const handleSubmit = async(e) =>{
+  //   e.preventDefault();
+  //   const book = {title, author, genre, country, synopsis}
 
 
-    createSupabase(book, books, setBooks)
+  //   createSupabase(book, books, setBooks)
 
-    console.log(data)
-    console.log(data[0])
+  //   console.log(data)
+  //   console.log(data[0])
 
-    if(error) throw error
-    setBooks([...books, data[0]])
-    setTitle('')
-    setAuthor('')
-    setGenre('')
-    setCountry('')
-    setSynopsis('')
-    }
+  //   if(error) throw error
+  //   setBooks([...books, data[0]])
+  //   setTitle('')
+  //   setAuthor('')
+  //   setGenre('')
+  //   setCountry('')
+  //   setSynopsis('')
+  //   }
   
 // 
 
@@ -125,17 +136,60 @@ const BookForm = ({books, setBooks}) => {
   //   </div>
   // );
 
+
+
     return (
-      <div className="flex justify-center">
+      <div className="flex justify-center flex-col items-center">
       <Field className="max-w-2xl mt-20 mx-20" orientation="horizontal">
         <Input value={value} onChange={handleChange} type="search" placeholder="Search..." />
-        <Button variant="destructive">Reset</Button>
+        <Button variant="destructive" onClick={()=>{
+          setValue("")
+        }}>Reset</Button>
         <Button onClick={async(e)=>{
           let res = await grabInfo(value)
           res = res.items
           console.log(res)
+          setResults([])
+          
+          res.forEach((info)=>{
+            const bookInfo = info.volumeInfo
+            const book = {
+              title : bookInfo.title,
+              author : bookInfo.author,
+              genre : "N/A",
+              country : "N/A",
+              synopsis : bookInfo.description,
+              image_link: bookInfo.imageLinks.thumbnail,
+              google_id: info.id,
+            }
+
+            setResults(results => [...results, book])
+          })
+
+          setValue("")
         }}>Search</Button>
     </Field>
+
+
+          <motion.div 
+          className='grid gap-6 xl:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1 mt-10'
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+  
+          {results.map(book => (
+            <CardImage
+              key={book.google_id} 
+              info={book} 
+              books={books} 
+              setBooks={setBooks}
+              recommend = {true}
+              image_link = {book.image_link}
+            />
+          ))}
+        </motion.div>
+
       </div>
     )
 

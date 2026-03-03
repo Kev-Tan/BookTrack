@@ -29,14 +29,26 @@ const containerVariants = {
 const BookList = ({ books, setBooks }) => {
   return (
     <div className='p-8'>
-      <button onClick={async()=>{
-        let data = await grabInfo("Harry Potter")
-        console.log(data.items)
-        books = data.items
-        books.forEach((book)=>{
-          console.log(book.volumeInfo.title)
-        })
-      }}>Make request to fastAPI</button>
+        {/* <button onClick={async()=>{
+          let data = await grabInfo("Harry Potter")
+          console.log(data.items)
+          books = data.items
+          books.forEach((book)=>{
+            console.log(book.volumeInfo.title)
+          })
+        }}>Make request to fastAPI</button> */}
+
+      {books.length==0 && (
+        <>
+      <h1 className="mt-40 scroll-m-20 text-center text-4xl font-semibold tracking-tight text-balance">
+        You haven't added any books to your list
+      </h1>
+      <h2 className="scroll-m-20 mt-5 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+        Click on <span className='text-emerald-400'>'BookForm'</span> or <span className='text-emerald-400'>'AI Recommendation'</span> to get started
+      </h2>
+        </>
+      )}
+
       {books.length > 0 && (
         <motion.div 
           className='grid gap-6 xl:grid-cols-4 sm:grid-cols-2 xs:grid-cols-1  '
