@@ -59,9 +59,10 @@ const BookForm = ({books, setBooks}) => {
           
           res.forEach((info)=>{
             const bookInfo = info.volumeInfo
+            const allAuthors = bookInfo.authors ? bookInfo.authors.join(", ") : ""
             const book = {
               title : bookInfo.title,
-              author : bookInfo.author,
+              author : allAuthors,
               genre : "N/A",
               // country : "N/A",
               synopsis : bookInfo.description,
@@ -89,6 +90,7 @@ const BookForm = ({books, setBooks}) => {
             <CardImage
               key={book.google_id} 
               info={book} 
+              author = {book.author}
               books={books} 
               setBooks={setBooks}
               recommend = {true}

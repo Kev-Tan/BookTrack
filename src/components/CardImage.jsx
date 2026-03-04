@@ -68,7 +68,7 @@ export function CardImage({ info, books, setBooks, recommend, image_link }) {
             </Button> */}
 
               {/* <DeleteDrawer info={info}> */}
-              <DeleteDrawer info={info} />
+              <DeleteDrawer info={info} setBooks={setBooks} />
               <BookDrawer info={info}/>
         
           </>

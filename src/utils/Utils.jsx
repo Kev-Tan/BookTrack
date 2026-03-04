@@ -6,7 +6,12 @@ export const createSupabase = async (book, books, setBooks) => {
         .insert(book)
         .select()
 
+
         setBooks([...books, data[0]])
+        
+        await fetch(`http://127.0.0.1:8000/embeddings/one/${book.google_id}`, {
+            method: "POST",
+        });
         console.log("Book added!")
 }
 

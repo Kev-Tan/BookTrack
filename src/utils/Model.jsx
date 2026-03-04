@@ -100,16 +100,5 @@ catch(e){
 }
 
 
-  let book = {
-    "id": 1,
-    "title": "To Kill a Mockingbird",
-    "author": "Harper Lee",
-    "country": "United States",
-    "genre": "Fiction",
-    "synopsis": "A young girl grows up in the racially divided American South, where her father defends a Black man falsely accused of a crime, teaching her lessons about justice, empathy, and morality."
-  }
-
-//   console.log(book)
-// findSimilar(book)
 
 export {recommendBook, findSimilar}

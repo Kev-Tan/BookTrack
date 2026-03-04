@@ -23,7 +23,7 @@ const BookDrawer = ({info}) => {
   <DrawerContent className="h-[75vh] w-full flex flex-col items-center">
     <DrawerHeader>
       <DrawerTitle className="text-center">{info.title}</DrawerTitle>
-      <DrawerDescription className="text-center">Add author's names here</DrawerDescription>
+      <DrawerDescription className="text-center">{info.author}</DrawerDescription>
     </DrawerHeader>
     <div className="w-full flex flex-col items-center overflow-y-auto px-4 py-2 ">
         <div className='min-w-[200px] h-[35vh] max-w-100 bg-blue-200 rounded-lg'   style={{
