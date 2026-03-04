@@ -10,6 +10,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import React, { useState } from "react";
+import BookDrawer from "./Drawer";
+import { Book } from "lucide-react";
 
 
 export function CardImage({ info, books, setBooks, recommend, image_link }) {
@@ -25,6 +27,7 @@ export function CardImage({ info, books, setBooks, recommend, image_link }) {
           src={imgSrc}
           alt={info?.title ? `${info.title} cover` : "Book cover"}
           className="h-full w-full object-cover brightness-60 "
+          style={{backgroundPosition: "top",}}
           onError={() => setImgSrc(getHDThumbnail(fallbackImg))}
           loading="lazy"
         />
@@ -63,12 +66,9 @@ export function CardImage({ info, books, setBooks, recommend, image_link }) {
               Delete
             </Button>
 
-            <Button
-              className="flex-[2]"
-              onClick={() => console.log("view more")}
-            >
-              View More
-            </Button>
+           
+              <BookDrawer info={info}/>
+        
           </>
         )}
       </CardFooter>

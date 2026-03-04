@@ -9,6 +9,7 @@ import { CardImage } from "./CardImage";
 import { motion } from 'framer-motion';
 
 
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -42,7 +43,7 @@ const BookForm = ({books, setBooks}) => {
 
 
     return (
-      <div className="flex justify-center flex-col items-center">
+      <div className="flex justify-center flex-col items-center p-8">
  
       <Field className="max-w-2xl mt-20 mx-20 flex flex-col lg:flex-row" orientation="horizontal">
         <Input value={value} onChange={handleChange} type="search" placeholder="Search..." />

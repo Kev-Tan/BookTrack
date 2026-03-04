@@ -3,7 +3,9 @@ import { Button } from "@/components/ui/button"
 import { CardImage } from './CardImage';
 import axios from 'axios';
 import { data } from 'react-router-dom';
-
+import BookDrawer from './Drawer';
+import { set } from 'zod';
+import { useState } from 'react';
 
 // const grabInfo = async(term) =>{
 //   try{
@@ -27,6 +29,10 @@ const containerVariants = {
 };
 
 const BookList = ({ books, setBooks }) => {
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
+
   return (
     <div className='p-8 mt-20'>
       {books.length==0 && (
@@ -55,10 +61,15 @@ const BookList = ({ books, setBooks }) => {
               books={books} 
               setBooks={setBooks}
               recommend = {false}
+              // setDrawerOpen = {setDrawerOpen}
+              // setSelectedBook = {setSelectedBook}
             />
           ))}
         </motion.div>
       )}
+
+      
+
     </div>
   );
 };
