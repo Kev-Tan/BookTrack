@@ -1,5 +1,15 @@
 import React from 'react'
 import { Button } from "@/components/ui/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Textarea } from "@/components/ui/textarea"
+
 
 import {
   Drawer,
@@ -12,34 +22,28 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer"
 
-const BookDrawer = ({info}) => {
+const DeleteDrawer = ({info}) => {
   return (
 <Drawer>
     <DrawerTrigger asChild>
-        <Button className="flex-1" variant="default">
-          View More
+        <Button className="flex-1" variant="destructive">
+          Delete
         </Button>
       </DrawerTrigger>
   <DrawerContent className="h-[75vh] w-full flex flex-col items-center">
     <DrawerHeader>
-      <DrawerTitle className="text-center">{info.title}</DrawerTitle>
-      <DrawerDescription className="text-center">Add author's names here</DrawerDescription>
+      <DrawerTitle className="text-center">Delete this book?</DrawerTitle>
     </DrawerHeader>
     <div className="w-full flex flex-col items-center overflow-y-auto px-4 py-2 ">
-        <div className='min-w-[200px] h-[35vh] max-w-100 bg-blue-200 rounded-lg'   style={{
-    backgroundImage: `url(${info.image_link})`,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "top",
-  }}>
-          
-        </div>
+    <Textarea className="text-md sm:max-w[80vw] md:max-w[70vw] lg:max-w-[50vw]" placeholder="Why are you dropping this book?" rows={10} />
     </div>
     <DrawerFooter>
-      {/* <Button>Submit</Button>
+        <div className='flex gap-2'>
+      <Button>Submit</Button>
         <DrawerClose asChild>
             <Button variant="outline">Cancel</Button>
-        </DrawerClose> */}
+        </DrawerClose>
+        </div>
     </DrawerFooter>
   </DrawerContent>
 </Drawer>
@@ -47,4 +51,4 @@ const BookDrawer = ({info}) => {
   )
 }
 
-export default BookDrawer
+export default DeleteDrawer

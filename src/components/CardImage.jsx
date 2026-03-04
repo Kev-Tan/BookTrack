@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import React, { useState } from "react";
 import BookDrawer from "./Drawer";
+import DeleteDrawer from "./DeleteDrawer";
 import { Book } from "lucide-react";
 
 
@@ -58,15 +59,16 @@ export function CardImage({ info, books, setBooks, recommend, image_link }) {
           </Button>
         ) : (
           <>
-            <Button
+            {/* <Button
               className="flex-1"
               variant="destructive"
               onClick={() => deleteSupabase(info.id, books, setBooks)}
             >
               Delete
-            </Button>
+            </Button> */}
 
-           
+              {/* <DeleteDrawer info={info}> */}
+              <DeleteDrawer info={info} />
               <BookDrawer info={info}/>
         
           </>

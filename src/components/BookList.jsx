@@ -35,7 +35,7 @@ const BookList = ({ books, setBooks }) => {
 
   return (
     <div className='p-8 mt-20'>
-      {books.length==0 && (
+      {/* {books.length==0 && (
         <>
       <h1 className="mt-40 scroll-m-20 text-center text-4xl font-semibold tracking-tight text-balance">
         You haven't added any books to your list
@@ -44,7 +44,7 @@ const BookList = ({ books, setBooks }) => {
         Click on <span className='text-emerald-400'>'BookForm'</span> or <span className='text-emerald-400'>'AI Recommendation'</span> to get started
       </h2>
         </>
-      )}
+      )} */}
 
       {books.length > 0 && (
         <motion.div 
