@@ -8,7 +8,7 @@ export const supabase = createClient(
 export async function fetchBooks(setBooks) {
   const { data, error } = await supabase
     .from("books")
-    .select("*"); // Best practice to use "*" for clarity
+    .select("id, title, author, image_link, status, synopsis")
 
     setBooks(data)
 

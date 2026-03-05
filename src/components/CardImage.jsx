@@ -13,6 +13,8 @@ import React, { useState } from "react";
 import BookDrawer from "./Drawer";
 import DeleteDrawer from "./DeleteDrawer";
 import { Book } from "lucide-react";
+import BookTabs from "./BookTabs";
+
 
 
 export function CardImage({ info, books, setBooks, recommend, image_link }) {
